@@ -55,7 +55,9 @@ export const LanguageSwitcher = () => {
 						}
 						className={`relative inline-flex items-center gap-1 px-4 py-2 opacity-60 transition hover:opacity-100`}
 					>
-						<span>{locale.label}</span>
+						<span className="text-base font-medium leading-6">
+							{locale.label}
+						</span>
 						<span>
 							<Globe weight="bold" />
 						</span>

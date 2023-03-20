@@ -9,35 +9,35 @@ export const Navbar = () => {
 		<div className="bg-gray-900">
 			<Container className="flex items-center justify-between py-4">
 				<div className="flex items-center flex-shrink-0 text-white mr-6">
-					<span className="inline-block p-2 mr-2 bg-slate-50 rounded-full text-gray-900">
+					<span className="inline-block p-2 mr-4 bg-slate-50 rounded-full text-gray-900">
 						<Passkey />
 					</span>
-					<span className="font-semibold text-xl tracking-tight">
+					<span className="font-bold text-2xl leading-tight">
 						Passkeys
 					</span>
 				</div>
-				<nav className="gap-4 flex items-center">
+				<nav className="gap-2 flex items-center">
 					<ul className="flex">
 						<li>
 							<Link
 								href={""}
-								className="px-4 py-2 opacity-60 hover:opacity-100 transition"
+								className="px-4 py-2 text-base font-medium leading-6 opacity-60 hover:opacity-100 transition"
 							>
-								What
+								About
 							</Link>
 						</li>
 						<li>
 							<Link
 								href={""}
-								className="px-4 py-2 opacity-60 hover:opacity-100 transition"
+								className="px-4 py-2 text-base font-medium leading-6 opacity-60 hover:opacity-100 transition"
 							>
-								Why
+								Philosophy
 							</Link>
 						</li>
 						<li>
 							<Link
 								href={""}
-								className="px-4 py-2 opacity-60 hover:opacity-100 transition"
+								className="px-4 py-2 text-base font-medium leading-6 opacity-60 hover:opacity-100 transition"
 							>
 								How
 							</Link>
