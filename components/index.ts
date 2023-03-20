@@ -3,3 +3,4 @@ export * from "./Navbar";
 export * from "./Button";
 export * from "./LanguageSwitcher";
 export * from "./DemoPopover";
+export * from "./MembersMarquee";

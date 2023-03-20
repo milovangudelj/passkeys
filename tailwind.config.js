@@ -10,12 +10,21 @@ module.exports = {
 				sans: ["var(--inter-font)", ...defaultTheme.fontFamily.sans],
 			},
 			animation: {
+				slide: "slide 60s linear infinite",
 				suaf: "suaf 400ms cubic-bezier(0.16, 1, 0.3, 1)",
 				sraf: "sraf 400ms cubic-bezier(0.16, 1, 0.3, 1)",
 				sdaf: "sdaf 400ms cubic-bezier(0.16, 1, 0.3, 1)",
 				slaf: "slaf 400ms cubic-bezier(0.16, 1, 0.3, 1)",
 			},
 			keyframes: {
+				slide: {
+					"0%": {
+						transform: "translateX(0)",
+					},
+					"100%": {
+						transform: "translateX(-100%)",
+					},
+				},
 				suaf: {
 					"0%": {
 						opacity: "0",
