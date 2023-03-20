@@ -6,7 +6,10 @@ export const Container = ({
 	...props
 }: ContainerProps) => {
 	return (
-		<div className={`container mx-auto ${className}`} {...props}>
+		<div
+			className={`w-full sm:max-w-[640px] md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto ${className}`}
+			{...props}
+		>
 			{children}
 		</div>
 	);
