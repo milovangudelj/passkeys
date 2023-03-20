@@ -54,7 +54,7 @@ export function DemoPopover() {
 					<Button variant="outline">Sign in with a passkey</Button>
 				</div>
 				<Popover.Close
-					className="absolute top-2 right-2 hover:bg-gray-50/10 focus:bg-gray-50/20 rounded-full p-2 transition focus-visible:outline-2 focus-visible:outline-gray-50/60 outline-none"
+					className="absolute text-gray-50/60 hover:text-gray-50/100 top-2 right-2 hover:bg-gray-50/10 focus:bg-gray-50/20 rounded-full p-2 transition focus-visible:outline-2 focus-visible:outline-gray-50/60 outline-none"
 					aria-label="Close"
 				>
 					<X />
