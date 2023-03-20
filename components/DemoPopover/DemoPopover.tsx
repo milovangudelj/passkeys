@@ -1,11 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { X } from "@phosphor-icons/react";
 
 import { Button } from "@components";
 
 export function DemoPopover() {
+	const [loading, setLoading] = useState(false);
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setLoading(true);
+
+		setTimeout(() => {
+			setLoading(false);
+		}, 2000);
+	};
+
 	return (
 		<Popover.Root>
 			<Popover.Trigger asChild>
@@ -19,7 +31,7 @@ export function DemoPopover() {
 					<p className="text-xl font-medium leading-6">
 						Sign up or sign in
 					</p>
-					<form className="flex flex-col gap-4">
+					<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 						<label htmlFor="email">
 							<span className="text-sm leading-4 opacity-60">Email</span>
 							<input
@@ -30,7 +42,9 @@ export function DemoPopover() {
 								className="mt-1 block w-full bg-gray-800 placeholder:text-gray-400 text-gray-50 rounded border-gray-600 focus:border-teal-600 focus:ring-4 focus:ring-teal-800 focus:ring-opacity-50"
 							/>
 						</label>
-						<Button type="submit">Continue</Button>
+						<Button type="submit" loading={loading}>
+							Continue
+						</Button>
 					</form>
 					<div className="flex items-center gap-4">
 						<span className="inline-block flex-1 h-px bg-slate-50 opacity-10"></span>

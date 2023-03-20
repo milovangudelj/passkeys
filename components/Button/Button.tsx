@@ -1,13 +1,25 @@
 "use client";
 
+import { Spinner } from "@components/icons";
 import { forwardRef } from "react";
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
 	variant?: "filled" | "outline";
+	loading?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-	({ variant = "filled", children, className, ...props }, ref) => {
+	(
+		{
+			variant = "filled",
+			disabled,
+			loading = false,
+			children,
+			className,
+			...props
+		},
+		ref
+	) => {
 		const classes = {
 			filled: "bg-teal-500 hover:bg-teal-600 text-gray-900",
 			outline:
@@ -16,11 +28,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 		return (
 			<button
-				className={`px-4 py-2 rounded text-base font-medium leading-6 focus:outline-4 focus-visible:outline-4 focus-visible:outline-teal-800 outline-offset-0 outline-none ${classes[variant]} transition ${className}`}
+				disabled={disabled || loading}
+				className={`px-4 py-2 relative rounded text-base font-medium leading-6 focus:outline-4 focus-visible:outline-4 focus-visible:outline-teal-800 outline-offset-0 outline-none ${classes[variant]} transition ${className}`}
 				ref={ref}
 				{...props}
 			>
-				{children}
+				<span
+					className={`${
+						loading
+							? "select-none pointer-events-none invisible"
+							: "visible"
+					}`}
+				>
+					{children}
+				</span>
+				{loading && (
+					<span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-block">
+						<Spinner />
+					</span>
+				)}
 			</button>
 		);
 	}
