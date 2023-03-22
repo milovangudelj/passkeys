@@ -71,6 +71,7 @@ const MembersList = ({
 						title={member.name}
 						src={member.image}
 						loading="eager"
+						className="pointer-events-none select-none"
 					/>
 				</li>
 			))}

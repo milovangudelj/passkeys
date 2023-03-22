@@ -6,7 +6,7 @@ import { Link } from "next-intl";
 
 export const Navbar = () => {
 	return (
-		<div className="bg-gray-900">
+		<div className="bg-gray-900/75 backdrop-blur border-b border-gray-50/[0.06] sticky top-0 z-10 ">
 			<Container className="flex items-center justify-between py-4">
 				<div className="flex items-center flex-shrink-0 text-white mr-6">
 					<span className="inline-block p-2 mr-4 bg-slate-50 rounded-full text-gray-900">
