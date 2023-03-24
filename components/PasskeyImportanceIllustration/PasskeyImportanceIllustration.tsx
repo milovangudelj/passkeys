@@ -39,7 +39,7 @@ export const PasskeyImportanceIllustration = () => {
 				<span className="flex w-[60px] aspect-square absolute z-[1] items-center justify-center animate-orbit-7 rounded-full">
 					<EyeSlash width={36} height={36} />
 				</span>
-				<div className="absolute z-0 w-[400px] aspect-square bg-gradient-radial from-teal-500/20 rounded-full to-teal-500/0 blur-2xl"></div>
+				<div className="absolute z-0 w-[400px] aspect-square bg-gradient-radial from-teal-500/50 rounded-full to-teal-500/0 blur-2xl"></div>
 			</div>
 		</div>
 	);
