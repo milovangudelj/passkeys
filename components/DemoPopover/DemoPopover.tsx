@@ -24,7 +24,7 @@ export function DemoPopover() {
 				<Button aria-label="Try the Demo">Try the Demo</Button>
 			</Popover.Trigger>
 			<Popover.Content
-				className="bg-gray-800 w-[340px] rounded shadow-[0px_8px_32px_rgba(0,_0,_0,_0.1)] p-8 will-change-transform data-open:data-top:animate-sdaf data-open:data-bottom:animate-suaf data-open:data-left:animate-sraf data-open:data-right:animate-slaf"
+				className="bg-zinc-800 w-[340px] rounded shadow-[0px_8px_32px_rgba(0,_0,_0,_0.1)] p-8 will-change-transform data-open:data-top:animate-sdaf data-open:data-bottom:animate-suaf data-open:data-left:animate-sraf data-open:data-right:animate-slaf"
 				sideOffset={8}
 			>
 				<div className="flex flex-col gap-8">
@@ -39,7 +39,8 @@ export function DemoPopover() {
 								name="email"
 								id="email"
 								placeholder="john.doe@example.com"
-								className="mt-1 block w-full bg-gray-800 placeholder:text-gray-400 text-gray-50 rounded border-gray-600 focus:border-teal-600 focus:ring-4 focus:ring-teal-800 focus:ring-opacity-50"
+								autoComplete="webauthn email"
+								className="mt-1 block w-full bg-zinc-800 placeholder:text-zinc-400 text-zinc-50 rounded border-zinc-600 focus:border-teal-600 focus:ring-4 focus:ring-teal-800 focus:ring-opacity-50"
 							/>
 						</label>
 						<Button type="submit" loading={loading}>
@@ -54,13 +55,13 @@ export function DemoPopover() {
 					<Button variant="outline">Sign in with a passkey</Button>
 				</div>
 				<Popover.Close
-					className="absolute text-gray-50/60 hover:text-gray-50/100 top-2 right-2 hover:bg-gray-50/10 focus:bg-gray-50/20 rounded-full p-2 transition focus-visible:outline-2 focus-visible:outline-gray-50/60 outline-none"
+					className="absolute text-zinc-50/60 hover:text-zinc-50/100 top-2 right-2 hover:bg-zinc-50/10 focus:bg-zinc-50/20 rounded-full p-2 transition focus-visible:outline-2 focus-visible:outline-zinc-50/60 outline-none"
 					aria-label="Close"
 				>
 					<X />
 				</Popover.Close>
 				<Popover.Arrow
-					className="text-gray-800 fill-current"
+					className="text-zinc-800 fill-current"
 					width={10.67}
 					height={8}
 				/>

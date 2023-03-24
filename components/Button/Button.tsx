@@ -21,7 +21,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		ref
 	) => {
 		const classes = {
-			filled: "bg-teal-500 hover:bg-teal-600 text-gray-900",
+			filled: "bg-teal-500 hover:bg-teal-600 text-zinc-900",
 			outline:
 				"bg-transparent border-2 border-teal-500 hover:bg-teal-500/10 text-teal-500",
 		};

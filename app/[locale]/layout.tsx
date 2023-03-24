@@ -55,7 +55,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang={locale} className={inter.variable}>
-			<body className="bg-gray-900 text-gray-50">
+			<body className="bg-zinc-900 text-zinc-50">
 				<Navbar />
 				{children}
 			</body>

@@ -14,10 +14,10 @@ import {
 export const PasskeyImportanceIllustration = () => {
 	return (
 		<div className="mx-auto relative w-[300px] flex items-center justify-center aspect-square rounded-full">
-			<span className="w-[60px] relative z-[2] aspect-square flex items-center justify-center rounded-full bg-gray-50">
-				<Passkey className="text-gray-900" width={36} height={36} />
+			<span className="w-[60px] relative z-[2] aspect-square flex items-center justify-center rounded-full bg-zinc-50">
+				<Passkey className="text-zinc-900" width={36} height={36} />
 			</span>
-			<div className="absolute inset-0 flex items-center justify-center text-gray-300">
+			<div className="absolute inset-0 flex items-center justify-center text-zinc-300">
 				<span className="flex w-[60px] aspect-square absolute z-[1] items-center justify-center animate-orbit-1 rounded-full">
 					<Fingerprint width={36} height={36} />
 				</span>
