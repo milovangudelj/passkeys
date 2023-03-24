@@ -37,13 +37,13 @@ export default async function Home() {
 						Google, Microsoft, and Apple.
 					</p>
 				</div>
-				<span className="mx-auto opacity-80">
+				<span className="min-w-[50%] opacity-80">
 					<Image
 						src={fidoLogo}
 						height={164}
 						alt="FIDO Alliance Logo"
 						placeholder="blur"
-						className="pointer-events-none select-none"
+						className="mx-auto pointer-events-none select-none"
 					/>
 				</span>
 			</Container>
