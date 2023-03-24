@@ -9,7 +9,8 @@ generator client {
 }
 
 model Post {
-  id         String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
   created_at DateTime @default(dbgenerated("now()")) @db.Date
   updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Date
 
@@ -23,12 +24,30 @@ model Post {
 }
 
 model User {
-  id         String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+
   created_at DateTime @default(dbgenerated("now()")) @db.Date
   updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Date
 
   email String  @unique
   name  String?
 
-  posts Post[]
+  posts   Post[]
+  devices AuthenticatorDevice[]
+}
+
+model AuthenticatorDevice {
+  credentialId String @id @db.Text
+
+  created_at DateTime @default(dbgenerated("now()")) @db.Date
+  updated_at DateTime @default(dbgenerated("now()")) @updatedAt @db.Date
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.Uuid
+
+  publicKey  Bytes    @db.ByteA
+  counter    BigInt   @default(0) @db.BigInt
+  deviceType String   @db.VarChar(32)
+  backedUp   Boolean  @default(false)
+  transports String[] @db.VarChar(255)
 }

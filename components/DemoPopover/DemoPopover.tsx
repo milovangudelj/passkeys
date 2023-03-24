@@ -1,6 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import {
+	startRegistration,
+	startAuthentication,
+} from "@simplewebauthn/browser";
+
 import * as Popover from "@radix-ui/react-popover";
 import { X } from "@phosphor-icons/react";
 
@@ -8,14 +13,113 @@ import { Button } from "@components";
 
 export function DemoPopover() {
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState<string | undefined>();
+	const [success, setSuccess] = useState<string | undefined>();
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setLoading(true);
+
+		const resp = await fetch(
+			`${process.env.NEXT_PUBLIC_WEBSITE_URL}/generateRegistrationOptions`
+		);
+
+		let attResp;
+		try {
+			// Pass the options to the authenticator and wait for a response
+			attResp = await startRegistration(await resp.json());
+		} catch (error: any) {
+			// Some basic error handling
+			if (error.name === "InvalidStateError") {
+				setError(
+					"Error: Authenticator was probably already registered by user"
+				);
+			} else {
+				setError(error);
+			}
+
+			throw error;
+		}
+
+		// POST the response to the endpoint that calls
+		// @simplewebauthn/server -> verifyRegistrationResponse()
+		const verificationResp = await fetch(
+			`${process.env.NEXT_PUBLIC_WEBSITE_URL}/verifyRegistrationResponse`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(attResp),
+			}
+		);
+
+		// Wait for the results of verification
+		const verificationJSON = await verificationResp.json();
+
+		// Show UI appropriate for the `verified` status
+		if (verificationJSON && verificationJSON.verified) {
+			setSuccess("Success!");
+		} else {
+			setError(
+				`Oh no, something went wrong! Response: <pre>${JSON.stringify(
+					verificationJSON
+				)}</pre>`
+			);
+		}
+
+		setLoading(false);
+	};
+
+	const handleSignIn: React.MouseEventHandler<HTMLButtonElement> = async (
+		e
+	) => {
 		setLoading(true);
 
 		setTimeout(() => {
 			setLoading(false);
 		}, 2000);
+
+		const resp = await fetch(
+			`${process.env.NEXT_PUBLIC_WEBSITE_URL}/generateAuthenticationOptions`
+		);
+
+		let asseResp;
+		try {
+			// Pass the options to the authenticator and wait for a response
+			asseResp = await startAuthentication(await resp.json(), true);
+		} catch (error: any) {
+			// Some basic error handling
+			setError(error);
+			throw error;
+		}
+
+		// POST the response to the endpoint that calls
+		// @simplewebauthn/server -> verifyAuthenticationResponse()
+		const verificationResp = await fetch(
+			`${process.env.NEXT_PUBLIC_WEBSITE_URL}/verifyAuthenticationResponse`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(asseResp),
+			}
+		);
+
+		// Wait for the results of verification
+		const verificationJSON = await verificationResp.json();
+
+		// Show UI appropriate for the `verified` status
+		if (verificationJSON && verificationJSON.verified) {
+			setSuccess("Success!");
+		} else {
+			setError(
+				`Oh no, something went wrong! Response: <pre>${JSON.stringify(
+					verificationJSON
+				)}</pre>`
+			);
+		}
 	};
 
 	return (
@@ -52,7 +156,9 @@ export function DemoPopover() {
 						<span className="text-xs leading-3 opacity-60">or</span>
 						<span className="inline-block flex-1 h-px bg-slate-50 opacity-10"></span>
 					</div>
-					<Button variant="outline">Sign in with a passkey</Button>
+					<Button variant="outline" onClick={handleSignIn}>
+						Sign in with a passkey
+					</Button>
 				</div>
 				<Popover.Close
 					className="absolute text-zinc-50/60 hover:text-zinc-50/100 top-2 right-2 hover:bg-zinc-50/10 focus:bg-zinc-50/20 rounded-full p-2 transition focus-visible:outline-2 focus-visible:outline-zinc-50/60 outline-none"
