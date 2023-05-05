@@ -64,11 +64,11 @@ const MembersList = ({
 			{members.map((member) => (
 				<li
 					key={member.name}
+					title={member.name}
 					className="opacity-60 hover:opacity-100 transition"
 				>
 					<Image
 						alt={member.name}
-						title={member.name}
 						src={member.image}
 						loading="eager"
 						className="pointer-events-none select-none"
